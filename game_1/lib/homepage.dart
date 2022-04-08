@@ -14,13 +14,19 @@ class _HomePageState extends State<HomePage> {
   double playerx = 0;
   void MoveLeft() {
     setState(() {
-      playerx -= 0.1;
+      if (playerx - 0.1 < -1) {
+      } else {
+        playerx -= 0.1;
+      }
     });
   }
 
   void MoveRight() {
     setState(() {
-      playerx += 0.1;
+      if (playerx + 0.1 > 1) {
+      } else {
+        playerx += 0.1;
+      }
     });
   }
 

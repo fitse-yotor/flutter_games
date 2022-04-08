@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:game_1/myButton.dart';
@@ -11,7 +13,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // player variable
   double playerx = 0;
+  //misalle variable
+  double miaslex = 0;
+  double misaley = 1;
+
   void MoveLeft() {
     setState(() {
       if (playerx - 0.1 < -1) {
@@ -28,6 +35,10 @@ class _HomePageState extends State<HomePage> {
         playerx += 0.1;
       }
     });
+  }
+
+  void firemisale() {
+    Timer.periodic(Duration(microseconds: 100), (timer) {});
   }
 
   @override
@@ -53,7 +64,15 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     MyPlayer(
                       playerx: playerx,
-                    )
+                    ),
+                    Container(
+                      alignment: Alignment(miaslex, misaley),
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        color: Colors.red,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -81,4 +100,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+}
+
+class Aligment {
+  Aligment(double misaley, double miaslex);
 }

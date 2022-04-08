@@ -9,6 +9,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  double playerx = 0;
+  void MoveLeft() {
+    setState(() {
+      playerx -= 0.1;
+    });
+  }
+
+  void MoveRight() {
+    setState(() {
+      playerx += 0.1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +34,7 @@ class _HomePageState extends State<HomePage> {
               child: Stack(
                 children: [
                   Container(
-                    alignment: Alignment(1, 0),
+                    alignment: Alignment(playerx, 0),
                     child: Container(
                       height: 50,
                       width: 50,
@@ -39,9 +52,15 @@ class _HomePageState extends State<HomePage> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              MyButton(icon: Icons.arrow_left),
+              MyButton(
+                icon: Icons.arrow_left,
+                function: MoveLeft,
+              ),
               MyButton(icon: Icons.arrow_upward),
-              MyButton(icon: Icons.arrow_right)
+              MyButton(
+                icon: Icons.arrow_right,
+                function: MoveRight,
+              )
             ],
           ),
         ))

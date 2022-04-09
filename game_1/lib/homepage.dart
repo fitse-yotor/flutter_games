@@ -17,7 +17,7 @@ class _HomePageState extends State<HomePage> {
   static double playerx = 0;
   //misalle variable
 
-  double miaslex = 0;
+  double miaslex = playerx;
   double misaley = 1;
   double misalehight = 10;
 
@@ -42,14 +42,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   void firemisale() {
-    Timer.periodic(Duration(microseconds: 20), (timer) {
-      // if (misaleheight > MediaQuery.of(context).size.height * 3 / 4) {
-      // restMisale();
-      //timer.cancel();
-      // }
-      setState(() {
-        misalehight += 0.1;
-      });
+    Timer.periodic(Duration(milliseconds: 20), (timer) {
+      if (misalehight > MediaQuery.of(context).size.height * 3 / 4) {
+        restMisale();
+        timer.cancel();
+      } else {
+        setState(() {
+          misalehight += 10;
+        });
+      }
     });
   }
 
@@ -82,16 +83,13 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    MyPlayer(
-                      playerx: playerx,
-                    ),
                     Container(
                       alignment: Alignment(miaslex, misaley),
                       child: Container(
-                        height: misalehight,
-                        width: 30,
-                        color: Colors.red,
-                      ),
+                          height: misalehight, width: 2, color: Colors.grey),
+                    ),
+                    MyPlayer(
+                      playerx: playerx,
                     ),
                   ],
                 ),

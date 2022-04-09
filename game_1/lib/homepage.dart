@@ -14,10 +14,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // player variable
-  double playerx = 0;
+  static double playerx = 0;
   //misalle variable
+
   double miaslex = 0;
   double misaley = 1;
+  double misalehight = 10;
 
   void MoveLeft() {
     setState(() {
@@ -25,6 +27,7 @@ class _HomePageState extends State<HomePage> {
       } else {
         playerx -= 0.1;
       }
+      miaslex = playerx;
     });
   }
 
@@ -34,11 +37,25 @@ class _HomePageState extends State<HomePage> {
       } else {
         playerx += 0.1;
       }
+      miaslex = playerx;
     });
   }
 
   void firemisale() {
-    Timer.periodic(Duration(microseconds: 100), (timer) {});
+    Timer.periodic(Duration(microseconds: 20), (timer) {
+      // if (misaleheight > MediaQuery.of(context).size.height * 3 / 4) {
+      // restMisale();
+      //timer.cancel();
+      // }
+      setState(() {
+        misalehight += 0.1;
+      });
+    });
+  }
+
+  void restMisale() {
+    miaslex = playerx;
+    misalehight += 10;
   }
 
   @override
@@ -51,6 +68,9 @@ class _HomePageState extends State<HomePage> {
           MoveLeft();
         } else if (event.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
           MoveRight();
+        }
+        if (event.isKeyPressed(LogicalKeyboardKey.space)) {
+          firemisale();
         }
       },
       child: Column(
@@ -68,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       alignment: Alignment(miaslex, misaley),
                       child: Container(
-                        height: 30,
+                        height: misalehight,
                         width: 30,
                         color: Colors.red,
                       ),

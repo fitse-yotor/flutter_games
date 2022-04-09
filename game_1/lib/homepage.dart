@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   double miaslex = playerx;
   double misaley = 1;
   double misalehight = 10;
+  bool midPoint = false;
 
   void MoveLeft() {
     setState(() {
@@ -28,7 +29,9 @@ class _HomePageState extends State<HomePage> {
       } else {
         playerx -= 0.1;
       }
-      miaslex = playerx;
+      if (!midPoint) {
+        miaslex = playerx;
+      }
     });
   }
 
@@ -38,19 +41,24 @@ class _HomePageState extends State<HomePage> {
       } else {
         playerx += 0.1;
       }
-      miaslex = playerx;
+
+      if (!midPoint) {
+        miaslex = playerx;
+      }
     });
   }
 
   void firemisale() {
     Timer.periodic(Duration(milliseconds: 20), (timer) {
-      if (misalehight > MediaQuery.of(context).size.height * 3 / 4) {
-        restMisale();
-        timer.cancel();
-      } else {
-        setState(() {
-          misalehight += 10;
-        });
+      midPoint = true;
+      setState(() {
+        misalehight += 10;
+      });
+      if (midPoint == false) {
+        if (misalehight > MediaQuery.of(context).size.height * 3 / 4) {
+          restMisale();
+          timer.cancel();
+        }
       }
     });
   }
@@ -85,10 +93,8 @@ class _HomePageState extends State<HomePage> {
                 child: Stack(
                   children: [
                     MisaleFire(
-                         miaslex : ,
-                         misalehight = 10;
- 
-
+                      miaslex: miaslex,
+                      misalehight: misalehight,
                     ),
                     MyPlayer(
                       playerx: playerx,

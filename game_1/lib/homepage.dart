@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:game_1/misalefire.dart';
 import 'package:game_1/myButton.dart';
 import 'package:game_1/myplayer.dart';
 
@@ -83,10 +84,11 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    Container(
-                      alignment: Alignment(miaslex, misaley),
-                      child: Container(
-                          height: misalehight, width: 2, color: Colors.grey),
+                    MisaleFire(
+                         miaslex : ,
+                         misalehight = 10;
+ 
+
                     ),
                     MyPlayer(
                       playerx: playerx,
